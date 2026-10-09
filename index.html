@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vajrapu Harshitha | Interactive Portfolio</title>
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --card-bg: #ffffff;
+      --primary: #4a5d4e;
+      --accent: #2e6f40;
+      --text: #2d3748;
+      --text-muted: #718096;
+      --border: #e2e8f0;
+      --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    header { position: sticky; top: 0; background: rgba(250, 249, 246, 0.85); backdrop-filter: blur(10px); z-index: 100; border-bottom: 1px solid var(--border); }
+    nav { max-width: 1100px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-weight: 700; font-size: 1.2rem; color: var(--primary); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.95rem; transition: color 0.2s ease; }
+    .nav-links a:hover { color: var(--accent); }
+
+    .hero { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2rem; align-items: center; min-height: 80vh; }
+    .hero-text h1 { font-size: 2.8rem; color: #1a202c; margin-bottom: 0.5rem; line-height: 1.2; }
+    .hero-text .subtitle { font-size: 1.25rem; color: var(--accent); font-weight: 600; margin-bottom: 1rem; }
+    .hero-text p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem; max-width: 540px; }
+
+    .hero-contact { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .contact-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--card-bg); padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid var(--border); font-size: 0.9rem; color: var(--text); text-decoration: none; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+
+    .character-container { position: relative; width: 100%; max-width: 420px; margin: 0 auto; background: linear-gradient(145deg, #f0e6ff, #e3f2fd, #f5f5f5); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,0.8); display: flex; flex-direction: column; align-items: center; }
+    .avatar-svg { width: 100%; height: auto; max-height: 380px; }
+    .pupil { transition: transform 0.05s ease-out; }
+    .head-group { transition: transform 0.1s ease-out; transform-origin: 200px 180px; }
+
+    section { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+    .section-title { font-size: 1.8rem; color: var(--primary); margin-bottom: 2rem; position: relative; display: inline-block; }
+    .section-title::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 40px; height: 3px; background: var(--accent); border-radius: 2px; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .skill-card { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .skill-card h3 { font-size: 1.1rem; color: var(--accent); margin-bottom: 0.8rem; }
+    .tag { display: inline-block; background: var(--bg); padding: 0.3rem 0.7rem; border-radius: 12px; font-size: 0.82rem; color: var(--text); border: 1px solid var(--border); margin: 0.2rem; }
+
+    .timeline { display: flex; flex-direction: column; gap: 1.5rem; }
+    .timeline-item { background: var(--card-bg); padding: 1.8rem; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem; }
+    .item-title { font-size: 1.2rem; font-weight: 700; color: #1a202c; }
+    .item-role { font-size: 0.95rem; color: var(--accent); font-weight: 600; }
+    .item-date { font-size: 0.85rem; color: var(--text-muted); background: var(--bg); padding: 0.2rem 0.6rem; border-radius: 10px; }
+    .item-body { margin-top: 0.8rem; color: var(--text); font-size: 0.95rem; }
+    .item-body ul { margin-left: 1.2rem; margin-top: 0.5rem; }
+
+    footer { text-align: center; padding: 2.5rem 1rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.9rem; background: #ffffff; }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-contact { justify-content: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#" class="logo">Vajrapu Harshitha</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience & Projects</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="about">
+    <div class="hero-text">
+      <h1>Hi, I'm Harshitha 👋</h1>
+      <div class="subtitle">Biotechnology Researcher & Computational Biologist</div>
+      <p>Final-year B.Tech Biotechnology student at GITAM (2023–2027) combining hands-on computational biology, clinical machine learning, and biomaterials research.</p>
+      
+      <div class="hero-contact">
+        <a href="tel:+919346048629" class="contact-badge">📞 +91 9346048629</a>
+        <a href="mailto:vajrapuharshitha@gmail.com" class="contact-badge">✉️ vajrapuharshitha@gmail.com</a>
+        <a href="https://linkedin.com/in/vajrapu-harshitha" target="_blank" class="contact-badge">🔗 LinkedIn</a>
+        <span class="contact-badge">📍 Visakhapatnam, AP</span>
+      </div>
+    </div>
+
+    <div class="character-container" id="avatarStage">
+      <svg class="avatar-svg" viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="skinGrad" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#ffebd9"/><stop offset="100%" stop-color="#f5caa6"/>
+          </radialGradient>
+          <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3d2314"/><stop offset="100%" stop-color="#1a0d07"/>
+          </linearGradient>
+          <linearGradient id="coatGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#e2e8f0"/>
+          </linearGradient>
+          <linearGradient id="laptopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#cbd5e1"/><stop offset="100%" stop-color="#64748b"/>
+          </linearGradient>
+        </defs>
+
+        <path d="M 120 340 L 150 240 Q 200 230 250 240 L 280 340 Z" fill="url(#coatGrad)"/>
+        <path d="M 175 240 L 200 280 L 225 240 Z" fill="#1e3a8a"/>
+
+        <g class="head-group" id="headGroup">
+          <path d="M 120 180 Q 110 80 200 70 Q 290 80 280 180 Q 290 250 260 270 Q 200 260 140 270 Z" fill="url(#hairGrad)"/>
+          <circle cx="132" cy="180" r="14" fill="url(#skinGrad)"/>
+          <circle cx="268" cy="180" r="14" fill="url(#skinGrad)"/>
+          <path d="M 135 170 Q 135 240 200 240 Q 265 240 265 170 Q 265 110 200 110 Q 135 110 135 170 Z" fill="url(#skinGrad)"/>
+          <path d="M 135 140 Q 170 100 200 130 Q 240 100 265 140 Q 250 90 200 80 Q 150 90 135 140 Z" fill="url(#hairGrad)"/>
+
+          <rect x="145" y="155" width="42" height="32" rx="10" fill="none" stroke="#334155" stroke-width="3"/>
+          <rect x="213" y="155" width="42" height="32" rx="10" fill="none" stroke="#334155" stroke-width="3"/>
+          <line x1="187" y1="168" x2="213" y2="168" stroke="#334155" stroke-width="3"/>
+
+          <ellipse cx="166" cy="171" rx="14" ry="11" fill="#ffffff"/>
+          <ellipse cx="234" cy="171" rx="14" ry="11" fill="#ffffff"/>
+
+          <g id="leftPupil" class="pupil">
+            <circle cx="166" cy="171" r="6" fill="#2d1810"/><circle cx="164" cy="169" r="2" fill="#ffffff"/>
+          </g>
+          <g id="rightPupil" class="pupil">
+            <circle cx="234" cy="171" r="6" fill="#2d1810"/><circle cx="232" cy="169" r="2" fill="#ffffff"/>
+          </g>
+
+          <path d="M 188 202 Q 200 212 212 202" fill="none" stroke="#b91c1c" stroke-width="2.5" stroke-linecap="round"/>
+        </g>
+
+        <rect x="20" y="330" width="360" height="20" fill="#e2e8f0" rx="4"/>
+        <path d="M 110 330 L 130 260 L 270 260 L 290 330 Z" fill="url(#laptopGrad)"/>
+        <rect x="140" y="268" width="120" height="52" rx="3" fill="#0f172a"/>
+        <line x1="148" y1="278" x2="190" y2="278" stroke="#38bdf8" stroke-width="2"/>
+        <line x1="148" y1="288" x2="220" y2="288" stroke="#4ade80" stroke-width="2"/>
+      </svg>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h
